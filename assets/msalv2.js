@@ -17,9 +17,15 @@ var aadOauth = (function () {
      // TODO: Add support for other MSAL configuration
      var authData = {
          clientId: config.clientId,
-         authority: config.isB2C ? "https://" + config.tenant + ".b2clogin.com/tfp/" + config.tenant + ".onmicrosoft.com/" + config.policy + "/" : "https://login.microsoftonline.com/" + config.tenant,
-         knownAuthorities: [ config.tenant + ".b2clogin.com", "login.microsoftonline.com"],
-         redirectUri: config.redirectUri,
+         authority: "https://hellobusinessapp.ciamlogin.com/hellobusinessapp.onmicrosoft.com",
+         knownAuthorities: [ "https://hellobusinessapp.ciamlogin.com", config.tenant + ".onmicrosoft.com", "login.microsoftonline.com"],
+         scopes: [ 
+          "https://hellobusinessapp.onmicrosoft.com/7272c951-1f68-47ad-b61e-4510b85d647f/access_as_user",
+          "openid",
+          "profile",          
+          "offline_access"
+        ],
+        redirectUri: config.redirectUri,
      };
      var postLogoutRedirectUri = {
          postLogoutRedirectUri: config.postLogoutRedirectUri,
